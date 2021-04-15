@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 // import Paper from '@material-ui/core/Paper';
-import { Button, FormControl, FormHelperText, Grid, IconButton, InputAdornment, InputLabel, OutlinedInput } from '@material-ui/core';
-import { AccountCircleOutlined, EmailOutlined, Visibility, VisibilityOff } from '@material-ui/icons';
+import { Button, Grid } from '@material-ui/core';
 import useStyles from '../styles/Styles';
 import TextInput from './login/TextInput';
+import PasswordInput from './login/PasswordInput';
 import axios from 'axios';
 
 export default function Login() {
@@ -16,17 +16,7 @@ export default function Login() {
         _password: false
     });
     //Strings
-    const strings = ['usuario', 'email', 'contraseña'];
-
-    const [showpassword, setShowPassword] = useState(false)
-
-    const handleShowPassword = () => {
-        if(showpassword){
-            setShowPassword(false);
-        } else {
-            setShowPassword(true);
-        }
-    }
+    const strings = ['usuario', 'email'];
 
     /*
     ===== Validate inputs =====   
@@ -104,33 +94,10 @@ export default function Login() {
                                 setInputFocus={setInputFocus}
                                 text={strings[1]}
                             />
-
-                            <FormControl className={classes.inputControl} variant="outlined">
-                                <InputLabel htmlFor="outlined-adornment-password">Contraseña</InputLabel>
-                                <OutlinedInput
-                                    id="outlined-adornment-password"
-                                    type={showpassword ? 'text' : 'password'}
-                                    labelWidth={90}
-                                    onFocus={() => setInputFocus({...inputFocus, _password: true})}
-                                    onBlur={() => setInputFocus({...inputFocus, _password: false})}
-                                    endAdornment={
-                                    <InputAdornment position="end">
-                                        <IconButton
-                                        aria-label="toggle password visibility"
-                                        onClick={handleShowPassword}
-                                        edge="end"
-                                        >
-                                        {showpassword?
-                                            <VisibilityOff className={[classes.trans , inputFocus._password? classes.iconsLight : classes.icons]}/>
-                                            :
-                                            <Visibility className={[classes.trans , inputFocus._password? classes.iconsLight : classes.icons]}/>
-                                        }
-                                        </IconButton>
-                                    </InputAdornment>
-                                    }
-                                />
-                                <FormHelperText id="outlined-weight-helper-text" className={classes.errorText}>La contraseña no es válida</FormHelperText>
-                            </FormControl>
+                            <PasswordInput
+                                inputFocus={inputFocus}
+                                setInputFocus={setInputFocus}
+                            />
 
                             <Button 
                                 variant="contained" 
