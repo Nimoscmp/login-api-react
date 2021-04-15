@@ -3,7 +3,7 @@ import { AccountCircleOutlined, EmailOutlined } from '@material-ui/icons';
 import React from 'react'
 import useStyles from '../../styles/Styles';
 
-export default function TextInput({inputFocus, setInputFocus, text}) {
+export default function TextInput({inputFocus, setInputFocus, text, handleChange, error}) {
 
     const classes = useStyles();
 
@@ -31,10 +31,12 @@ export default function TextInput({inputFocus, setInputFocus, text}) {
                 <InputLabel htmlFor="user-input" className={classes.capitalize}>{text}</InputLabel>
                 <OutlinedInput
                     id={text === 'usuario' ? 'user-input' : 'email-input'}
+                    name={text === 'usuario' ? 'userName' : 'email'}
                     type="text"
                     labelWidth={text === 'usuario' ? 60 : 45}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
+                    onChange={handleChange}
                     endAdornment={
                     <InputAdornment position="end">
                         {text === 'usuario'?
@@ -45,7 +47,11 @@ export default function TextInput({inputFocus, setInputFocus, text}) {
                     </InputAdornment>
                     }
                 />
+                {error?
                 <FormHelperText id="outlined-weight-helper-text" className={classes.errorText}>{'El ' + text + ' no es válido'}</FormHelperText>
+                :
+                null
+                }
             </FormControl>
         </>
     )

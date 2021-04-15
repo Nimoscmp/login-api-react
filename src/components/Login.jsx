@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 // import Paper from '@material-ui/core/Paper';
 import { Button, Grid } from '@material-ui/core';
 import useStyles from '../styles/Styles';
@@ -18,9 +18,9 @@ export default function Login() {
     //Strings
     const strings = ['usuario', 'email'];
 
-    /*
-    ===== Validate inputs =====   
-    */
+    /*===========================
+    =====  VALIDATE INPUTS  =====   
+    =============================*/
 
     const localUser = {
         userName: "Usuario",
@@ -28,23 +28,70 @@ export default function Login() {
         password: "123456"
     }
 
+    const [buttondisabled, setButtonDisabled] = useState(true);
+    const [submitted, setSubmitted] = useState(false);
+
     const [userData, setUserData] = useState({
         userName: '',
         email: '',
         password: ''
     })
 
-    const [error, setError] = useState({
-        userName: false,
-        email: false,
-        password: false
-    })
+    const [erroruser, setErrorUser] = useState(false);
+    const [erroremail, setErrorEmail] = useState(false);
+    const [errorpassword, setErrorPassword] = useState(false);
 
     const handleChange = e => {
         setUserData({
             ...userData,
             [e.target.name]: e.target.value
         })
+    }
+
+    useEffect(() => {
+        const compareStrings = () => {
+            if (userData.userName.trim() === localUser.userName) {
+                setErrorUser(false);
+            } 
+            if (userData.email.trim() === localUser.email) {
+                setErrorEmail(false);
+            }
+            if (userData.password.trim() === localUser.password) {
+                setErrorPassword(false);
+            }
+        }
+
+        compareStrings();
+
+        if(userData.userName !== '' && userData.email !== '' && userData.password !== ''){
+            setButtonDisabled(false);
+        } else {
+            setButtonDisabled(true);
+        }
+        // eslint-disable-next-line
+    }, [userData])
+
+    useEffect(() => {
+        const compareStrings = () => {
+            if ((userData.userName.trim() !== localUser.userName) && submitted) {
+                setErrorUser(true);
+            } 
+            if ((userData.email.trim() !== localUser.email) && submitted) {
+                setErrorEmail(true);
+            }
+            if ((userData.password.trim() !== localUser.password) && submitted) {
+                setErrorPassword(true);
+            }
+        }
+
+        compareStrings();
+        // eslint-disable-next-line
+    }, [submitted])
+
+    function HandleSubmit (e) {
+        e.preventDefault();
+        setSubmitted(true);
+        
     }
 
     const baseUrl = 'https://www.datos.gov.co/resource/gt2j-8ykr.json';
@@ -61,8 +108,6 @@ export default function Login() {
             console.log(error);
         }
       }
-
-    //   <CircularProgress />
 
     return (
         <>
@@ -82,28 +127,38 @@ export default function Login() {
 
                 <Grid container item xs={12} sm={6} justify="center">
                     <aside className={classes.asideContainer}>
-                        <form className={classes.formContainer} noValidate autoComplete="off">
+                        <form 
+                            className={classes.formContainer} 
+                            noValidate 
+                            autoComplete="off"
+                            onSubmit={HandleSubmit}>
 
                             <TextInput 
                                 inputFocus={inputFocus}
                                 setInputFocus={setInputFocus}
                                 text={strings[0]}
+                                handleChange={handleChange}
+                                error={erroruser}
                             />
                             <TextInput 
                                 inputFocus={inputFocus}
                                 setInputFocus={setInputFocus}
                                 text={strings[1]}
+                                handleChange={handleChange}
+                                error={erroremail}
                             />
                             <PasswordInput
                                 inputFocus={inputFocus}
                                 setInputFocus={setInputFocus}
+                                handleChange={handleChange}
+                                error={errorpassword}
                             />
 
                             <Button 
                                 variant="contained" 
                                 color="primary" 
                                 type="submit"
-                                disabled={true}
+                                disabled={buttondisabled}
                                 className={classes.inputControl}>
                                 <span className={classes.spanButton}>Iniciar sesión</span>
                             </Button>
