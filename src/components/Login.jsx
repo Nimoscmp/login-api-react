@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import { Button, CircularProgress, FormControl, FormGroup, FormHelperText, Grid, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from '@material-ui/core';
+// import Paper from '@material-ui/core/Paper';
+import { Button, FormControl, FormHelperText, Grid, IconButton, InputAdornment, InputLabel, OutlinedInput } from '@material-ui/core';
 import { AccountCircleOutlined, EmailOutlined, Visibility, VisibilityOff } from '@material-ui/icons';
 import useStyles from '../styles/Styles';
+import TextInput from './login/TextInput';
 import axios from 'axios';
 
 export default function Login() {
@@ -11,10 +11,12 @@ export default function Login() {
     const classes = useStyles();
     //Use state to change icon colors when focus
     const [inputFocus, setInputFocus] = useState({
-        userName: false,
-        email: false,
-        password: false
+        _userName: false,
+        _email: false,
+        _password: false
     });
+    //Strings
+    const strings = ['usuario', 'email', 'contraseña'];
 
     const [showpassword, setShowPassword] = useState(false)
 
@@ -24,6 +26,35 @@ export default function Login() {
         } else {
             setShowPassword(true);
         }
+    }
+
+    /*
+    ===== Validate inputs =====   
+    */
+
+    const localUser = {
+        userName: "Usuario",
+        email: "usuario@usuario.com",
+        password: "123456"
+    }
+
+    const [userData, setUserData] = useState({
+        userName: '',
+        email: '',
+        password: ''
+    })
+
+    const [error, setError] = useState({
+        userName: false,
+        email: false,
+        password: false
+    })
+
+    const handleChange = e => {
+        setUserData({
+            ...userData,
+            [e.target.name]: e.target.value
+        })
     }
 
     const baseUrl = 'https://www.datos.gov.co/resource/gt2j-8ykr.json';
@@ -61,40 +92,18 @@ export default function Login() {
 
                 <Grid container item xs={12} sm={6} justify="center">
                     <aside className={classes.asideContainer}>
-                        <form className={classes.formContainer} noValidate autoComplete="off">   
-                            <FormControl className={classes.inputControl} variant="outlined">
-                                <InputLabel htmlFor="user-input">Usuario</InputLabel>
-                                <OutlinedInput
-                                    id="user-input"
-                                    type="text"
-                                    labelWidth={60}
-                                    onFocus={() => setInputFocus({...inputFocus, userName: true})}
-                                    onBlur={() => setInputFocus({...inputFocus, userName: false})}
-                                    endAdornment={
-                                    <InputAdornment position="end">
-                                        <AccountCircleOutlined className={[classes.trans , inputFocus.userName? classes.iconsLight : classes.icons]}/>
-                                    </InputAdornment>
-                                    }
-                                />
-                                <FormHelperText id="outlined-weight-helper-text" className={classes.errorText}>El usuario no es válido</FormHelperText>
-                            </FormControl>
+                        <form className={classes.formContainer} noValidate autoComplete="off">
 
-                            <FormControl className={classes.inputControl} variant="outlined">
-                                <InputLabel htmlFor="email-input">Email</InputLabel>
-                                <OutlinedInput
-                                    id="email-input"
-                                    type="text"
-                                    labelWidth={45}
-                                    onFocus={() => setInputFocus({...inputFocus, email: true})}
-                                    onBlur={() => setInputFocus({...inputFocus, email: false})}
-                                    endAdornment={
-                                    <InputAdornment position="end">
-                                        <EmailOutlined className={[classes.trans , inputFocus.email? classes.iconsLight : classes.icons]}/>
-                                    </InputAdornment>
-                                    }
-                                />
-                                <FormHelperText id="outlined-weight-helper-text" className={classes.errorText}>El email no es válido</FormHelperText>
-                            </FormControl>
+                            <TextInput 
+                                inputFocus={inputFocus}
+                                setInputFocus={setInputFocus}
+                                text={strings[0]}
+                            />
+                            <TextInput 
+                                inputFocus={inputFocus}
+                                setInputFocus={setInputFocus}
+                                text={strings[1]}
+                            />
 
                             <FormControl className={classes.inputControl} variant="outlined">
                                 <InputLabel htmlFor="outlined-adornment-password">Contraseña</InputLabel>
@@ -102,8 +111,8 @@ export default function Login() {
                                     id="outlined-adornment-password"
                                     type={showpassword ? 'text' : 'password'}
                                     labelWidth={90}
-                                    onFocus={() => setInputFocus({...inputFocus, password: true})}
-                                    onBlur={() => setInputFocus({...inputFocus, password: false})}
+                                    onFocus={() => setInputFocus({...inputFocus, _password: true})}
+                                    onBlur={() => setInputFocus({...inputFocus, _password: false})}
                                     endAdornment={
                                     <InputAdornment position="end">
                                         <IconButton
@@ -112,9 +121,9 @@ export default function Login() {
                                         edge="end"
                                         >
                                         {showpassword?
-                                            <VisibilityOff className={[classes.trans , inputFocus.password? classes.iconsLight : classes.icons]}/>
+                                            <VisibilityOff className={[classes.trans , inputFocus._password? classes.iconsLight : classes.icons]}/>
                                             :
-                                            <Visibility className={[classes.trans , inputFocus.password? classes.iconsLight : classes.icons]}/>
+                                            <Visibility className={[classes.trans , inputFocus._password? classes.iconsLight : classes.icons]}/>
                                         }
                                         </IconButton>
                                     </InputAdornment>

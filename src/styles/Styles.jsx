@@ -21,6 +21,27 @@ const useStyles = makeStyles((theme) => ({
     },
     iconsLight: {
         color: '#002884'
+    },
+    spinner: {
+        color: '#ffffff'
+    },
+    spanButton: {
+        textTransform: 'none',
+        fontSize: '1.2rem'
+    },
+    errorText: {
+        color: '#c77430'
+    },
+    asideContainer: {
+        width: '90%'
+    },
+    formContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center'
+    },
+    capitalize: {
+        textTransform: 'capitalize'
     }
 }));
 
