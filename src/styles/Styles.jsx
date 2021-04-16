@@ -4,17 +4,16 @@ const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
     },
-    paper: {
-      padding: theme.spacing(2),
-      textAlign: 'center',
-      color: theme.palette.text.secondary,
-    },
     inputControl: {
         width: '80%',
         margin: theme.spacing(1)        
     },
     trans: {
         transition: 'all 0.3s ease'
+    },
+    bgLight: {
+        backgroundColor: '#d1e2ff',
+        fontFamily: 'Montserrat, sansSerif'
     },
     icons: {
         color: '#94b6f2'
@@ -33,15 +32,28 @@ const useStyles = makeStyles((theme) => ({
         color: '#c77430'
     },
     asideContainer: {
-        width: '90%'
+        width: '95%'
     },
     formContainer: {
         display: 'flex',
         flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    sectionContainer: {
+        width: '80%',
+        margin: theme.spacing(1),
+        display: 'flex',
         alignItems: 'center'
     },
     capitalize: {
         textTransform: 'capitalize'
+    },
+    fw300: {
+        fontWeight: '300'
+    },
+    fw400: {
+        fontWeight: '400'
     }
 }));
 

@@ -4,9 +4,12 @@ import { Button, Grid } from '@material-ui/core';
 import useStyles from '../styles/Styles';
 import TextInput from './login/TextInput';
 import PasswordInput from './login/PasswordInput';
+import Section from './login/Section';
 import axios from 'axios';
+import { useHistory } from 'react-router';
 
-export default function Login() {
+export default function Login({setCheckLogin, checklogin}) {
+
     //Declare constante from styles component
     const classes = useStyles();
     //Use state to change icon colors when focus
@@ -62,6 +65,7 @@ export default function Login() {
         }
 
         compareStrings();
+        setSubmitted(false);
 
         if(userData.userName !== '' && userData.email !== '' && userData.password !== ''){
             setButtonDisabled(false);
@@ -88,12 +92,34 @@ export default function Login() {
         // eslint-disable-next-line
     }, [submitted])
 
+    //Function to check if ready
+    const checkIfReady = () =>{
+        if(userData.userName.trim() === localUser.userName && userData.email.trim() === localUser.email && userData.password.trim() === localUser.password){
+            setCheckLogin(true);
+        } else {
+            setCheckLogin(false);
+        }
+    }
+
     function HandleSubmit (e) {
         e.preventDefault();
         setSubmitted(true);
-        
     }
+    
+    /*===========================
+    =====       ROUTER      =====   
+    =============================*/
 
+    let history = useHistory();
+
+    useEffect(() => {
+        if(checklogin){
+            history.push('/home');
+        } else {
+            history.push('/login');
+        }
+    }, [checklogin])
+    
     const baseUrl = 'https://www.datos.gov.co/resource/gt2j-8ykr.json';
 
     const getApi = async() => {
@@ -119,11 +145,7 @@ export default function Login() {
                     </section>
                 </Grid>
 
-                <Grid item xs={12} sm={6}>
-                    <section>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem iusto culpa eos. Expedita, illum consequuntur atque sequi animi totam nostrum. Consequatur facere vitae soluta voluptatum dolore fugiat, deserunt placeat repellendus.</p>
-                    </section>
-                </Grid>
+                <Section />
 
                 <Grid container item xs={12} sm={6} justify="center">
                     <aside className={classes.asideContainer}>
@@ -153,13 +175,13 @@ export default function Login() {
                                 handleChange={handleChange}
                                 error={errorpassword}
                             />
-
                             <Button 
                                 variant="contained" 
                                 color="primary" 
                                 type="submit"
                                 disabled={buttondisabled}
-                                className={classes.inputControl}>
+                                className={classes.inputControl}
+                                onClick={checkIfReady}>
                                 <span className={classes.spanButton}>Iniciar sesión</span>
                             </Button>
                         </form> 
