@@ -32,9 +32,13 @@ const useStyles = makeStyles((theme) => ({
         color: '#c77430'
     },
     asideContainer: {
-        width: '95%'
+        width: '95%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     formContainer: {
+        width: '100%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -54,6 +58,27 @@ const useStyles = makeStyles((theme) => ({
     },
     fw400: {
         fontWeight: '400'
+    },
+    h3 : {
+        fontSize: '1.5rem',
+        color: '#f50057',
+        margin: '5px'
+    },
+    divLoad: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    mainLoad: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        height: '96vh'
+    },
+    cover : {
+        width: '100%',
+        height: '100vh'
     }
 }));
 

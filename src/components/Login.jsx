@@ -8,11 +8,14 @@ import Section from './login/Section';
 import axios from 'axios';
 import { useHistory } from 'react-router';
 
-export default function Login({setCheckLogin, checklogin}) {
+export default function Login({setCheckLogin, setCheckLogOut, checklogin}) {
 
     //Declare constante from styles component
     const classes = useStyles();
     //Use state to change icon colors when focus
+
+    setCheckLogOut(false);
+
     const [inputFocus, setInputFocus] = useState({
         _userName: false,
         _email: false,
@@ -137,17 +140,10 @@ export default function Login({setCheckLogin, checklogin}) {
 
     return (
         <>
-            <h1>Hola</h1>
-            <Grid container spacing={3}>
-                <Grid item xs={12}>
-                    <section>
-                        <button onClick={getApi}>Pulsa aquí</button>
-                    </section>
-                </Grid>
-
+            <Grid container spacing={3} className={classes.cover}>
                 <Section />
 
-                <Grid container item xs={12} sm={6} justify="center">
+                <Grid container item xs={12} md={6} justify="center">
                     <aside className={classes.asideContainer}>
                         <form 
                             className={classes.formContainer} 

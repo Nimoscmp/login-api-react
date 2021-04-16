@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
-import Login from "./components/Login";
 import { BrowserRouter as Router, Route, Switch, Link, useHistory } from "react-router-dom";
+import Login from "./components/Login";
+import Home from "./components/Home";
+import Loading from "./components/Loading";
 
 function App() {
 
   const [checklogin, setCheckLogin] = useState(false);
+  const [checkLogOut, setCheckLogOut] = useState(false);
   //Hook from react router
 
   return (
     <>
     <Router>
       <div>
-        <nav>
+        {/* <nav>
           <ul>
             <li>
               <Link to="/home">Home</Link>
@@ -20,10 +23,10 @@ function App() {
               <Link to="/login">Login</Link>
             </li>
             <li>
-              <Link to="/users">Users</Link>
+              <Link to="/">Loading</Link>
             </li>
           </ul>
-        </nav>
+        </nav> */}
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
@@ -31,28 +34,25 @@ function App() {
           <Route path="/login">
             <Login 
               setCheckLogin={setCheckLogin}
+              setCheckLogOut={setCheckLogOut}
               checklogin={checklogin}
             />
           </Route>
-          <Route path="/users">
-            <Users />
-          </Route>
           <Route path="/home">
-            <Home />
+            <Home
+              setCheckLogin={setCheckLogin} 
+              setCheckLogOut={setCheckLogOut}
+              checkLogOut={checkLogOut}
+            />
+          </Route>
+          <Route path="/">
+            <Loading/>
           </Route>
         </Switch>
       </div>
     </Router>
     </>
   );
-}
-
-function Home() {
-  return <h2>Home</h2>;
-}
-
-function Users() {
-  return <h2>Users</h2>;
 }
 
 export default App;
