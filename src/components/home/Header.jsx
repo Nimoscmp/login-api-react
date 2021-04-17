@@ -3,7 +3,7 @@ import { ExitToApp, PeopleOutlined, PersonAddOutlined } from '@material-ui/icons
 import React from 'react'
 import useStyles from '../../styles/Styles';
 
-export default function Header({handleLogOut}) {
+export default function Header({handleLogOut, setToggleFriends}) {
 
     const classes = useStyles();
 
@@ -15,8 +15,18 @@ export default function Header({handleLogOut}) {
                 <div className={classes.logo}>Red</div>
                 <nav>
                     <ul className={classes.ul}>
-                        <li className={classes.margin1}><PersonAddOutlined fontSize="large" className={classes.iconsHeader}/></li>
-                        <li className={classes.margin1}><PeopleOutlined fontSize="large" className={classes.iconsHeader}/></li>
+                        <li className={classes.margin1}>
+                            <PersonAddOutlined 
+                                fontSize="large" 
+                                className={classes.iconsHeader}
+                                onClick={() => setToggleFriends(true)}/>
+                        </li>
+                        <li className={classes.margin1}>
+                            <PeopleOutlined 
+                                fontSize="large" 
+                                className={classes.iconsHeader}
+                                onClick={() => setToggleFriends(false)}/>
+                        </li>
                         <li className={classes.margin1}>
                             {matches?
                             <Button 
@@ -31,7 +41,7 @@ export default function Header({handleLogOut}) {
                             <ExitToApp
                                 onClick={handleLogOut}
                                 fontSize="large"
-                                className={classes.gray}
+                                className={classes.lightgray}
                             />
                             }
                         </li>

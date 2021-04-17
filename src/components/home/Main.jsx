@@ -1,15 +1,18 @@
-import { useMediaQuery } from '@material-ui/core';
+import { CircularProgress, useMediaQuery } from '@material-ui/core';
 import { AddCircle, LocationCity, PhoneEnabledOutlined } from '@material-ui/icons';
 import React, { useEffect, useState } from 'react'
 import useStyles from '../../styles/Styles';
 
-export default function Main({dataUsers, imageUsers}) {
+export default function Main({dataUsers, imageUsers, imgDataUsers, setImgDataUsers, completeUsers, setCompleteUsers}) {
 
     const classes = useStyles();
-    const matches = useMediaQuery('(min-width:777px)');
+    const matches = useMediaQuery('(min-width:805px)');
 
-    const [imgDataUsers, setImgDataUsers] = useState([]);
-    const [completeUsers, setCompleteUsers] = useState([]);
+    const [showPreload, setShowPreload] = useState(true);
+
+    const handleLoad = () => {
+        setShowPreload(false);
+    }
 
     useEffect(() => {
         setImgDataUsers(
@@ -37,7 +40,18 @@ export default function Main({dataUsers, imageUsers}) {
 
     return (
         <> 
-            <main className={classes.main}>
+            <section 
+                className={classes.mainLoad2}
+                style={{
+                    display: showPreload ? 'flex' : 'none'
+                }}>
+                <div className={classes.divLoad}>
+                    <span className={classes.h3}>Cargando...</span>
+                    <CircularProgress color="secondary" size={32}/>
+                </div>
+            </section>
+
+            <main className={classes.main} onLoad={handleLoad}>
                 {completeUsers.map(item => (
                     <div key={item.id} className={matches ? classes.card : classes.cardMini}>
                         <div className={classes.justBetween}>

@@ -4,14 +4,18 @@ import { useHistory } from 'react-router';
 import useStyles from '../styles/Styles';
 import Header from './home/Header';
 import Main from './home/Main';
+import SeeFriends from './home/SeeFriends';
 
 export default function Home({setCheckLogin, setCheckLogOut, checklogin, checkLogOut, loggedIn, localUser}) {
 
     //Declare states
-    const [showPreload, setShowPreload] = useState(true);
+    // const [showPreload, setShowPreload] = useState(true);
     const [dataUsers, setDataUsers] = useState([]);
     const [imageUsers, setImageUsers] = useState([]);
-    const [friends, setFriends] = useState([]);
+    const [imgDataUsers, setImgDataUsers] = useState([]);
+    const [completeUsers, setCompleteUsers] = useState([]);
+    const [friendList, setFriendList] = useState([]);
+    const [toggleFriends, setToggleFriends] = useState(true);
 
     //Styles
     const classes = useStyles();
@@ -91,11 +95,22 @@ export default function Home({setCheckLogin, setCheckLogOut, checklogin, checkLo
 
             <Header 
                 handleLogOut={handleLogOut}
+                setToggleFriends={setToggleFriends}
             />
+            {toggleFriends?
             <Main 
                 dataUsers={dataUsers}
                 imageUsers={imageUsers}
+                imgDataUsers={imgDataUsers}
+                setImgDataUsers={setImgDataUsers}
+                completeUsers={completeUsers}
+                setCompleteUsers={setCompleteUsers}
             />
+            :
+            <SeeFriends
+                
+            />
+            }
 
         </>
     )

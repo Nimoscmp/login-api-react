@@ -79,8 +79,7 @@ const useStyles = makeStyles((theme) => ({
         height: '96vh'
     },
     mainLoad2: {
-        position: 'fixed',
-        top: '0',
+        position: 'absolute',
         zIndex: '10000',
         display: 'flex',
         alignItems: 'center',
@@ -141,7 +140,8 @@ const useStyles = makeStyles((theme) => ({
         margin: '1rem',
         width:  '90%',
         borderRadius: '10px',
-        padding: '0'
+        padding: '0',
+        fontFamily: 'Montserrat, sans-serif'
     },
     span1: {
         margin: '5px',
@@ -196,7 +196,15 @@ const useStyles = makeStyles((theme) => ({
         color: 'white'
     },
     gray: {
-        color: 'gray'
+        color: '#3b3b3b'
+    },
+    lightgray: {
+        color: 'lightgray',
+        cursor: 'pointer',
+        transition: 'all 0.3s ease',
+        '&:hover': {
+            color: 'gray'
+        }
     },
     iconsHeader: {
         color: 'black',
