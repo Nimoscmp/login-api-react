@@ -76,9 +76,68 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         height: '96vh'
     },
+    mainLoad2: {
+        position: 'fixed',
+        top: '0',
+        zIndex: '10000',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        height: '100vh',
+        backgroundColor: '#fff'
+    },
     cover : {
         width: '100%',
-        height: '100vh'
+        height: '100vh',
+        margin: '0'
+    },
+    logo: {
+        fontFamily: 'Monda, sansSerif',
+        fontSize: '1.2rem',
+        color: '#000000'
+    },
+    header : {
+        position: 'fixed',
+        top: '0',
+        display: 'flex',
+        width: '100%',
+        height: '5rem',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        boxShadow: '10px 10px 10px lightgray',
+        backgroundColor: 'white'
+    },
+    ul : {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        listStyle: 'none'
+    },
+    li: {
+        margin: theme.spacing(1)
+    },
+    main: {
+        marginTop: '5.5rem',
+        display: 'flex',
+        alignItems: 'center',
+        flexDirection: 'column'
+    },
+    card: {
+        boxShadow: '3px 3px 3px lightgray',
+        margin: '1rem',
+        width: '80%',
+        borderRadius: '10px',
+        padding: '10px'
+    },
+    span1: {
+        margin: '5px',
+        padding: '5px'
+    },
+    span2: {
+        margin: '5px',
+        padding: '5px',
+        color: '#f50057'
     }
 }));
 
