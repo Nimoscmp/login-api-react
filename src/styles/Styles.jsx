@@ -1,4 +1,6 @@
+import { useMediaQuery } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { useEffect, useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -93,9 +95,10 @@ const useStyles = makeStyles((theme) => ({
         margin: '0'
     },
     logo: {
-        fontFamily: 'Monda, sansSerif',
-        fontSize: '1.2rem',
-        color: '#000000'
+        fontFamily: 'Shadows Into Light',
+        fontSize: '2.2rem',
+        color: '#f50057',
+        margin: '5px'
     },
     header : {
         position: 'fixed',
@@ -105,7 +108,7 @@ const useStyles = makeStyles((theme) => ({
         height: '5rem',
         alignItems: 'center',
         justifyContent: 'space-around',
-        boxShadow: '10px 10px 10px lightgray',
+        boxShadow: '2px 2px 15px #d6d6d6',
         backgroundColor: 'white'
     },
     ul : {
@@ -114,30 +117,94 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-around',
         listStyle: 'none'
     },
-    li: {
+    margin1: {
         margin: theme.spacing(1)
     },
     main: {
+        width: '100%',
         marginTop: '5.5rem',
         display: 'flex',
+        flexWrap: 'wrap',
         alignItems: 'center',
-        flexDirection: 'column'
+        justifyContent: 'space-evenly'
     },
     card: {
         boxShadow: '3px 3px 3px lightgray',
         margin: '1rem',
-        width: '80%',
+        width:  '42%',
         borderRadius: '10px',
-        padding: '10px'
+        padding: '0',
+        fontFamily: 'Montserrat, sans-serif'
+    },
+    cardMini: {
+        boxShadow: '3px 3px 3px lightgray',
+        margin: '1rem',
+        width:  '90%',
+        borderRadius: '10px',
+        padding: '0'
     },
     span1: {
         margin: '5px',
-        padding: '5px'
+        padding: '5px',
+        color: '#f50057',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-end'
     },
     span2: {
         margin: '5px',
         padding: '5px',
-        color: '#f50057'
+        color: 'gray',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-end'
+    },
+    span3: {
+        margin: '10px 15px',
+        alignItems: 'center',
+        textAlign: 'end'
+    },
+    imgUrl: {
+        width: '90px',
+        maxHeight: '60px',
+        borderRadius: '5px',
+        margin: theme.spacing(1),
+        boxShadow: '1px 1px 1px gray'
+    },
+    justBetween: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        backgroundColor: '#78626c',
+        borderRadius: '10px 10px 0 0'
+    },
+    justAround: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-around'
+    },
+    iconAdd : {
+        cursor: 'pointer',
+        transition: 'all 0.3s ease',
+        color: '#e6d3dc',
+        margin: theme.spacing(1),
+        '&:hover': {
+            color: 'white'
+        }
+    },
+    white: {
+        color: 'white'
+    },
+    gray: {
+        color: 'gray'
+    },
+    iconsHeader: {
+        color: 'black',
+        transition: 'all 0.3s ease',
+        cursor: 'pointer',
+        '&:hover': {
+            color: '#f50057'
+        }
     }
 }));
 

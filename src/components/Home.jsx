@@ -1,38 +1,102 @@
 import React, { useEffect, useState } from 'react'
-import { Button } from '@material-ui/core'
+import { Button, CircularProgress } from '@material-ui/core'
 import { useHistory } from 'react-router';
 import useStyles from '../styles/Styles';
+import Header from './home/Header';
+import Main from './home/Main';
 
-export default function Home({setCheckLogin, setCheckLogOut, checkLogOut}) {
+export default function Home({setCheckLogin, setCheckLogOut, checklogin, checkLogOut, loggedIn, localUser}) {
 
+    //Declare states
+    const [showPreload, setShowPreload] = useState(true);
+    const [dataUsers, setDataUsers] = useState([]);
+    const [imageUsers, setImageUsers] = useState([]);
+    const [friends, setFriends] = useState([]);
+
+    //Styles
     const classes = useStyles();
+    
+    //Routing import 
+    let history = useHistory();
+    
+    //Effect to check log out 
+    useEffect(() => {
+        if (localStorage.getItem('usuario') !== 'Usuario') {    
+            if (checkLogOut || !checklogin) {
+                history.push('/');
+            }
+        }
+        // eslint-disable-next-line 
+    }, [checkLogOut, checklogin])        
+    
+    useEffect(() => {
+        if(checklogin){
+            localStorage.setItem('usuario', localUser.userName);
+        }
+        // eslint-disable-next-line 
+    }, []) 
 
-    setCheckLogin(false);
+    useEffect(() => {
+        setCheckLogin(false);
+    }, [])
 
     const handleLogOut = () => {
         setCheckLogOut(true);
+        localStorage.clear();
     }
 
-    useEffect(() => {
-        if (checkLogOut) {
-            history.push('/login');
+    // >>> Get api
+    
+    
+    const getApi = async() => {
+        const baseUrl = 'https://jsonplaceholder.typicode.com/users';
+        try {
+            const response = await fetch(baseUrl);
+            const dataJson = await response.json();
+            setDataUsers(dataJson);
+        } catch (error){
+            console.log(error);
         }
-    }, [checkLogOut])
+    }
 
+    const getApiImages = async() => {
+        const baseUrl = 'https://picsum.photos/v2/list';
+        try {
+            const response = await fetch(baseUrl);
+            const dataJson = await response.json();
+            setImageUsers(dataJson);
+        } catch (error){
+            console.log(error);
+        }
+      }
 
-    // >>> Routing
-    let history = useHistory();
+    useEffect(() => {
+        getApi();
+        getApiImages();
+        // eslint-disable-next-line 
+    }, [])
 
     return (
         <>
-            <Button 
-                variant="contained" 
-                color="secondary" 
-                type="submit"
-                className={classes.inputControl}
-                onClick={handleLogOut}>
-                <span className={classes.spanButton}>Cerrar sesión</span>
-            </Button>
+            {/* {showPreload?           
+            <main className={classes.mainLoad2}>
+                <div className={classes.divLoad}>
+                    <span className={classes.h3}>Cargando...</span>
+                    <CircularProgress color="secondary" size={32}/>
+                </div>
+            </main>
+            :
+            null
+            } */}
+
+            <Header 
+                handleLogOut={handleLogOut}
+            />
+            <Main 
+                dataUsers={dataUsers}
+                imageUsers={imageUsers}
+            />
+
         </>
     )
 }

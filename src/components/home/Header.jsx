@@ -12,16 +12,17 @@ export default function Header({handleLogOut}) {
     return (
         <>
             <header className={classes.header}>
-                <div className={classes.h3}>Red</div>
+                <div className={classes.logo}>Red</div>
                 <nav>
                     <ul className={classes.ul}>
-                        <li className={classes.li}><PersonAddOutlined fontSize="large"/></li>
-                        <li className={classes.li}><PeopleOutlined fontSize="large"/></li>
-                        <li className={classes.li}>
+                        <li className={classes.margin1}><PersonAddOutlined fontSize="large" className={classes.iconsHeader}/></li>
+                        <li className={classes.margin1}><PeopleOutlined fontSize="large" className={classes.iconsHeader}/></li>
+                        <li className={classes.margin1}>
                             {matches?
                             <Button 
-                                variant="contained" 
-                                color="secondary" 
+                                variant="contained"
+                                size="small" 
+                                className={classes.gray} 
                                 type="submit"
                                 onClick={handleLogOut}>
                                 <span className={classes.spanButton}>Cerrar sesión</span>
@@ -30,7 +31,7 @@ export default function Header({handleLogOut}) {
                             <ExitToApp
                                 onClick={handleLogOut}
                                 fontSize="large"
-                                color="secondary"
+                                className={classes.gray}
                             />
                             }
                         </li>
