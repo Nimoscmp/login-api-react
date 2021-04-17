@@ -8,13 +8,15 @@ import Section from './login/Section';
 import axios from 'axios';
 import { useHistory } from 'react-router';
 
-export default function Login({setCheckLogin, setCheckLogOut, checklogin}) {
+export default function Login({setCheckLogin, setCheckLogOut, checklogin, localUser}) {
 
-    //Declare constante from styles component
+    //Declare constant from styles component
     const classes = useStyles();
     //Use state to change icon colors when focus
 
-    setCheckLogOut(false);
+    useEffect(() => {
+        setCheckLogOut(false);
+    }, [])
 
     const [inputFocus, setInputFocus] = useState({
         _userName: false,
@@ -27,12 +29,6 @@ export default function Login({setCheckLogin, setCheckLogOut, checklogin}) {
     /*===========================
     =====  VALIDATE INPUTS  =====   
     =============================*/
-
-    const localUser = {
-        userName: "Usuario",
-        email: "usuario@usuario.com",
-        password: "123456"
-    }
 
     const [buttondisabled, setButtonDisabled] = useState(true);
     const [submitted, setSubmitted] = useState(false);
@@ -96,7 +92,8 @@ export default function Login({setCheckLogin, setCheckLogOut, checklogin}) {
     }, [submitted])
 
     //Function to check if ready
-    const checkIfReady = () =>{
+    const checkIfReady = (event) =>{
+
         if(userData.userName.trim() === localUser.userName && userData.email.trim() === localUser.email && userData.password.trim() === localUser.password){
             setCheckLogin(true);
         } else {
@@ -116,28 +113,11 @@ export default function Login({setCheckLogin, setCheckLogOut, checklogin}) {
     let history = useHistory();
 
     useEffect(() => {
-        if(checklogin){
+        if(checklogin || localStorage.getItem('usuario') === 'Usuario'){
             history.push('/home');
-        } else {
-            history.push('/login');
-        }
+        } 
     }, [checklogin])
     
-    const baseUrl = 'https://www.datos.gov.co/resource/gt2j-8ykr.json';
-
-    const getApi = async() => {
-        try {
-            const response = await axios.get(baseUrl);
-            const dataJson = await response.data;
-            const statusCode = await response.status;
-            // setPhrases(dataJson[0]);
-            console.log(dataJson);
-            console.log(statusCode);
-        } catch (error){
-            console.log(error);
-        }
-      }
-
     return (
         <>
             <Grid container spacing={3} className={classes.cover}>
@@ -148,7 +128,7 @@ export default function Login({setCheckLogin, setCheckLogOut, checklogin}) {
                         <form 
                             className={classes.formContainer} 
                             noValidate 
-                            autoComplete="off"
+                            autoComplete="on"
                             onSubmit={HandleSubmit}>
 
                             <TextInput 

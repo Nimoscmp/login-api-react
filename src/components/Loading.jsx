@@ -7,11 +7,11 @@ export default function Loading() {
 
     const classes = useStyles();
 
-    let history = useHistory();
+    // let history = useHistory();
 
-    useEffect(() => {
-        history.push('/login');
-    }, [])
+    // useEffect(() => {
+    //     history.push('/login');
+    // }, [])
 
     return (
         <>
