@@ -23,3 +23,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.makeStyles-card-26{
+  transition: box-shadow 0.3s ease-out, transform 0.3s ease-out;
+}

@@ -128,20 +128,30 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-evenly'
     },
     card: {
-        boxShadow: '3px 3px 3px lightgray',
+        boxShadow: '2px 2px 2px #cfcfcf',
         margin: '1rem',
         width:  '42%',
         borderRadius: '10px',
         padding: '0',
-        fontFamily: 'Montserrat, sans-serif'
+        fontFamily: 'Montserrat, sans-serif',
+        '&:hover': {
+            boxShadow: '10px 10px 20px #cfcfcf',
+            transform: 'scale(1.02)',
+            transformOrigin: '50% 50%'
+        }
     },
     cardMini: {
-        boxShadow: '3px 3px 3px lightgray',
+        boxShadow: '2px 2px 2px #cfcfcf',
         margin: '1rem',
         width:  '90%',
         borderRadius: '10px',
         padding: '0',
-        fontFamily: 'Montserrat, sans-serif'
+        fontFamily: 'Montserrat, sans-serif',
+        '&:hover': {
+            boxShadow: '5px 5px 20px #cfcfcf',
+            transform: 'scale(1.01)',
+            transformOrigin: '50% 50%'
+        }
     },
     span1: {
         margin: '5px',
@@ -157,7 +167,8 @@ const useStyles = makeStyles((theme) => ({
         color: 'gray',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
+        fontSize: '0.8rem'
     },
     span3: {
         margin: '10px 15px',
