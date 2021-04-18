@@ -102,6 +102,7 @@ const useStyles = makeStyles((theme) => ({
     header : {
         position: 'fixed',
         top: '0',
+        zIndex: '1000',
         display: 'flex',
         width: '100%',
         height: '5rem',
@@ -202,6 +203,11 @@ const useStyles = makeStyles((theme) => ({
         '&:hover': {
             color: 'white'
         }
+    },
+    iconCheck : {
+        transition: 'all 0.3s ease',
+        color: '#fcfcfc',
+        margin: theme.spacing(1)
     },
     white: {
         color: 'white'

@@ -24,6 +24,6 @@ code {
     monospace;
 }
 
-.makeStyles-card-26{
+.makeStyles-card-26, .makeStyles-cardMini-27{
   transition: box-shadow 0.3s ease-out, transform 0.3s ease-out;
 }

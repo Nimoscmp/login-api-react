@@ -12,14 +12,27 @@ export default function Home({setCheckLogin, setCheckLogOut, checklogin, checkLo
     const [imageUsers, setImageUsers] = useState([]);
     const [imgDataUsers, setImgDataUsers] = useState([]);
     const [completeUsers, setCompleteUsers] = useState([]);
-    const [friendList, setFriendList] = useState([]);
     const [toggleFriends, setToggleFriends] = useState(true);
 
     //Initialize friends
-    let friendsInit = JSON.parse(localStorage.getItem('friends'));
+    let friendsInit = JSON.parse(localStorage.getItem('friendsList'));
     if(!friendsInit) {
-      friendsInit = [];
+        friendsInit = [];
     }
+    
+    const [friendList, setFriendList] = useState(friendsInit);
+
+    //Save in local storage 
+    useEffect(() => {
+        let friendsInit = JSON.parse(localStorage.getItem('friendsList'));
+
+        if (friendsInit) {
+            localStorage.setItem('friendsList', JSON.stringify(friendList));
+        } else {
+            localStorage.setItem('friendsList', JSON.stringify([]));
+        }
+        
+    }, [friendList])
 
     //Styles
     
@@ -51,7 +64,7 @@ export default function Home({setCheckLogin, setCheckLogOut, checklogin, checkLo
 
     const handleLogOut = () => {
         setCheckLogOut(true);
-        localStorage.clear();
+        localStorage.removeItem('usuario');
     }
 
     // >>> Get APIS <<<

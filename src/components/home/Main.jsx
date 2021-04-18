@@ -1,5 +1,5 @@
 import { CircularProgress, useMediaQuery } from '@material-ui/core';
-import { AddCircle, LocationCity, PhoneEnabledOutlined } from '@material-ui/icons';
+import { AddCircle, CheckCircleOutline, LocationCity, PhoneEnabledOutlined } from '@material-ui/icons';
 import React, { useEffect, useState } from 'react'
 import useStyles from '../../styles/Styles';
 
@@ -13,6 +13,10 @@ export default function Main({dataUsers, imageUsers, imgDataUsers, setImgDataUse
     const handleLoad = () => {
         setShowPreload(false);
     }
+
+    setTimeout(() => {
+        setShowPreload(false);
+    }, 800);
 
     useEffect(() => {
         setImgDataUsers(
@@ -41,9 +45,27 @@ export default function Main({dataUsers, imageUsers, imgDataUsers, setImgDataUse
         
     }, [imgDataUsers])
 
-    const AddFriend = (identifier) => {
+    const AddFriend = identifier => {
         const newFriend = completeUsers.filter(item => item.id === identifier);
         setFriendList([...friendList, newFriend[0]])
+    }
+
+    const [fay, setfay] = useState([]);
+
+    const checkIfFriend = identifier => {
+        const friendAlready = friendList.filter(friend => friend.id === identifier);
+
+        // setfay(friendAlready);
+
+        if (friendAlready.length === 0) {
+            
+            return false;
+        } else if(friendAlready[0].id === identifier){
+            setfay(friendAlready);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     return (
@@ -67,11 +89,19 @@ export default function Main({dataUsers, imageUsers, imgDataUsers, setImgDataUse
                                 <img src={item.imgUrl} alt="" className={classes.imgUrl}/>
                                 <span className={classes.margin1}><strong className={classes.white}>{item.name}</strong></span>
                             </div>
+                            {
+                            checkIfFriend()
+                            ?
+                            <CheckCircleOutline
+                                fontSize="large"
+                                className={classes.iconCheck}
+                            />
+                            :
                             <AddCircle 
-                                color="primary" 
                                 fontSize="large" 
                                 className={classes.iconAdd}
                                 onClick={() => AddFriend(item.id)}/>
+                            }
                         </div>
                         <div>
                             <p className={classes.span1}><small className={classes.margin1}><strong>{item.city}</strong></small><LocationCity color="secondary"/></p>
@@ -80,7 +110,6 @@ export default function Main({dataUsers, imageUsers, imgDataUsers, setImgDataUse
                                 <PhoneEnabledOutlined style={{marginLeft: '8px'}}/></p>
                             <p className={classes.span3}>{item.phrase}</p>
                         </div>
-                        {/* <small className={classes.margin1}></small></small> */}
                     </div>
                 ))}
             </main>
