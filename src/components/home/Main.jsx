@@ -3,7 +3,7 @@ import { AddCircle, LocationCity, PhoneEnabledOutlined } from '@material-ui/icon
 import React, { useEffect, useState } from 'react'
 import useStyles from '../../styles/Styles';
 
-export default function Main({dataUsers, imageUsers, imgDataUsers, setImgDataUsers, completeUsers, setCompleteUsers}) {
+export default function Main({dataUsers, imageUsers, imgDataUsers, setImgDataUsers, completeUsers, setCompleteUsers, friendList, setFriendList}) {
 
     const classes = useStyles();
     const matches = useMediaQuery('(min-width:805px)');
@@ -25,7 +25,10 @@ export default function Main({dataUsers, imageUsers, imgDataUsers, setImgDataUse
             setCompleteUsers(
                 dataUsers.map((item, index) => ({
                     name: item.username,
+                    fullname: item.name,
                     id: item.id,
+                    company: item.company.name,
+                    website: item.website,
                     phone: item.phone,
                     city: item.address.city,
                     phrase: item.company.catchPhrase,
@@ -37,6 +40,11 @@ export default function Main({dataUsers, imageUsers, imgDataUsers, setImgDataUse
         dataFunc();
         
     }, [imgDataUsers])
+
+    const AddFriend = (identifier) => {
+        const newFriend = completeUsers.filter(item => item.id === identifier);
+        setFriendList([...friendList, newFriend[0]])
+    }
 
     return (
         <> 
@@ -59,14 +67,20 @@ export default function Main({dataUsers, imageUsers, imgDataUsers, setImgDataUse
                                 <img src={item.imgUrl} alt="" className={classes.imgUrl}/>
                                 <span className={classes.margin1}><strong className={classes.white}>{item.name}</strong></span>
                             </div>
-                            <AddCircle color="primary" fontSize="large" className={classes.iconAdd}/>
+                            <AddCircle 
+                                color="primary" 
+                                fontSize="large" 
+                                className={classes.iconAdd}
+                                onClick={() => AddFriend(item.id)}/>
                         </div>
                         <div>
                             <p className={classes.span1}><small className={classes.margin1}><strong>{item.city}</strong></small><LocationCity color="secondary"/></p>
-                            <p className={classes.span2}><small className={classes.margin1}>{item.phone}</small><PhoneEnabledOutlined/></p>
+                            <p className={classes.span2}>
+                                {item.phone}
+                                <PhoneEnabledOutlined style={{marginLeft: '8px'}}/></p>
                             <p className={classes.span3}>{item.phrase}</p>
                         </div>
-                        
+                        {/* <small className={classes.margin1}></small></small> */}
                     </div>
                 ))}
             </main>

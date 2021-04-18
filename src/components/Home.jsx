@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, CircularProgress } from '@material-ui/core'
 import { useHistory } from 'react-router';
-import useStyles from '../styles/Styles';
 import Header from './home/Header';
 import Main from './home/Main';
 import SeeFriends from './home/SeeFriends';
@@ -17,8 +15,14 @@ export default function Home({setCheckLogin, setCheckLogOut, checklogin, checkLo
     const [friendList, setFriendList] = useState([]);
     const [toggleFriends, setToggleFriends] = useState(true);
 
+    //Initialize friends
+    let friendsInit = JSON.parse(localStorage.getItem('friends'));
+    if(!friendsInit) {
+      friendsInit = [];
+    }
+
     //Styles
-    const classes = useStyles();
+    
     
     //Routing import 
     let history = useHistory();
@@ -42,6 +46,7 @@ export default function Home({setCheckLogin, setCheckLogOut, checklogin, checkLo
 
     useEffect(() => {
         setCheckLogin(false);
+        // eslint-disable-next-line
     }, [])
 
     const handleLogOut = () => {
@@ -49,9 +54,7 @@ export default function Home({setCheckLogin, setCheckLogOut, checklogin, checkLo
         localStorage.clear();
     }
 
-    // >>> Get api
-    
-    
+    // >>> Get APIS <<<
     const getApi = async() => {
         const baseUrl = 'https://jsonplaceholder.typicode.com/users';
         try {
@@ -82,17 +85,6 @@ export default function Home({setCheckLogin, setCheckLogOut, checklogin, checkLo
 
     return (
         <>
-            {/* {showPreload?           
-            <main className={classes.mainLoad2}>
-                <div className={classes.divLoad}>
-                    <span className={classes.h3}>Cargando...</span>
-                    <CircularProgress color="secondary" size={32}/>
-                </div>
-            </main>
-            :
-            null
-            } */}
-
             <Header 
                 handleLogOut={handleLogOut}
                 setToggleFriends={setToggleFriends}
@@ -105,13 +97,15 @@ export default function Home({setCheckLogin, setCheckLogOut, checklogin, checkLo
                 setImgDataUsers={setImgDataUsers}
                 completeUsers={completeUsers}
                 setCompleteUsers={setCompleteUsers}
+                friendList={friendList}
+                setFriendList={setFriendList}
             />
             :
             <SeeFriends
-                
+                friendList={friendList}
+                setFriendList={setFriendList}
             />
             }
-
         </>
     )
 }

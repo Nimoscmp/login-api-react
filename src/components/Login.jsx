@@ -1,11 +1,11 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // import Paper from '@material-ui/core/Paper';
 import { Button, Grid } from '@material-ui/core';
 import useStyles from '../styles/Styles';
 import TextInput from './login/TextInput';
 import PasswordInput from './login/PasswordInput';
 import Section from './login/Section';
-import axios from 'axios';
+// import axios from 'axios';
 import { useHistory } from 'react-router';
 
 export default function Login({setCheckLogin, setCheckLogOut, checklogin, localUser}) {
@@ -16,6 +16,7 @@ export default function Login({setCheckLogin, setCheckLogOut, checklogin, localU
 
     useEffect(() => {
         setCheckLogOut(false);
+        // eslint-disable-next-line
     }, [])
 
     const [inputFocus, setInputFocus] = useState({
@@ -115,7 +116,8 @@ export default function Login({setCheckLogin, setCheckLogOut, checklogin, localU
     useEffect(() => {
         if(checklogin || localStorage.getItem('usuario') === 'Usuario'){
             history.push('/home');
-        } 
+        }
+       // eslint-disable-next-line  
     }, [checklogin])
     
     return (
