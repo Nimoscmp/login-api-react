@@ -20,7 +20,7 @@ export default function PasswordInput({inputFocus, setInputFocus, handleChange, 
 
     return (
         <>
-            <FormControl className={classes.inputControl} variant="outlined">
+            <FormControl className="inputControl" variant="outlined">
                 <InputLabel htmlFor="outlined-adornment-password">Contraseña</InputLabel>
                 <OutlinedInput
                     id="input-password"
@@ -38,16 +38,16 @@ export default function PasswordInput({inputFocus, setInputFocus, handleChange, 
                         edge="end"
                         >
                         {showpassword?
-                            <VisibilityOff className={[classes.trans , inputFocus._password? classes.iconsLight : classes.icons]}/>
+                            <VisibilityOff className={inputFocus._password? "trans iconsLight" : "trans icons"}/>
                             :
-                            <Visibility className={[classes.trans , inputFocus._password? classes.iconsLight : classes.icons]}/>
+                            <Visibility className={inputFocus._password? "trans iconsLight" : "trans icons"}/>
                         }
                         </IconButton>
                     </InputAdornment>
                     }
                 />
                 {error?
-                <FormHelperText id="outlined-weight-helper-text" className={classes.errorText}>La contraseña no es válida</FormHelperText>
+                <FormHelperText id="outlined-weight-helper-text" className="errorText">La contraseña no es válida</FormHelperText>
                 :
                 null
                 }

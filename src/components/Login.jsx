@@ -122,13 +122,13 @@ export default function Login({setCheckLogin, setCheckLogOut, checklogin, localU
     
     return (
         <>
-            <Grid container spacing={3} className={classes.cover}>
+            <Grid container spacing={3} className="cover">
                 <Section />
 
                 <Grid container item xs={12} md={6} justify="center">
-                    <aside className={classes.asideContainer}>
+                    <aside className="asideContainer">
                         <form 
-                            className={classes.formContainer} 
+                            className="formContainer" 
                             noValidate 
                             autoComplete="on"
                             onSubmit={HandleSubmit}>
@@ -158,9 +158,9 @@ export default function Login({setCheckLogin, setCheckLogOut, checklogin, localU
                                 color="primary" 
                                 type="submit"
                                 disabled={buttondisabled}
-                                className={classes.inputControl}
+                                className="inputControl"
                                 onClick={checkIfReady}>
-                                <span className={classes.spanButton}>Iniciar sesión</span>
+                                <span className="spanButton">Iniciar sesión</span>
                             </Button>
                         </form> 
                     </aside>

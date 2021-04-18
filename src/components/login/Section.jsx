@@ -7,10 +7,10 @@ export default function Section() {
     const classes = useStyles();
 
     return (
-        <Grid container item xs={12} md={6} className={classes.bgLight} justify="center">
-            <section className={classes.sectionContainer}>
-                <div className={classes.formContainer}>
-                    <h2 className={classes.fw400}>¿Listo para <strong className={classes.iconsLight}>conectarte</strong> con tus amigos?</h2>
+        <Grid container item xs={12} md={6} className="bgLight" justify="center">
+            <section className="sectionContainer">
+                <div className="formContainer">
+                    <h2 className="fw400">¿Listo para <strong className="iconsLight">conectarte</strong> con tus amigos?</h2>
                     <p>Esta plataforma te permite unirte con cientos de personas alrededor del mundo</p>
                 </div>
             </section>

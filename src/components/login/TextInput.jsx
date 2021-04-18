@@ -27,8 +27,8 @@ export default function TextInput({inputFocus, setInputFocus, text, handleChange
 
     return (
         <>
-            <FormControl className={classes.inputControl} variant="outlined">
-                <InputLabel htmlFor="user-input" className={classes.capitalize}>{text}</InputLabel>
+            <FormControl className="inputControl" variant="outlined">
+                <InputLabel htmlFor="user-input" className="capitalize">{text}</InputLabel>
                 <OutlinedInput
                     id={text === 'usuario' ? 'user-input' : 'email-input'}
                     name={text === 'usuario' ? 'userName' : 'email'}
@@ -40,15 +40,15 @@ export default function TextInput({inputFocus, setInputFocus, text, handleChange
                     endAdornment={
                     <InputAdornment position="end">
                         {text === 'usuario'?
-                        <AccountCircleOutlined className={[classes.trans , _userName ? classes.iconsLight : classes.icons]}/>
+                        <AccountCircleOutlined className={_userName? "trans iconsLight" : "trans icons"}/>
                         :
-                        <EmailOutlined className={[classes.trans , _email ? classes.iconsLight : classes.icons]}/>
+                        <EmailOutlined className={_email? "trans iconsLight" : "trans icons"}/>
                         }
                     </InputAdornment>
                     }
                 />
                 {error?
-                <FormHelperText id="outlined-weight-helper-text" className={classes.errorText}>{'El ' + text + ' no es válido'}</FormHelperText>
+                <FormHelperText id="outlined-weight-helper-text" className="errorText">{'El ' + text + ' no es válido'}</FormHelperText>
                 :
                 null
                 }

@@ -11,37 +11,37 @@ export default function Header({handleLogOut, setToggleFriends}) {
 
     return (
         <>
-            <header className={classes.header}>
-                <div className={classes.logo}>Red</div>
+            <header className="header">
+                <div className="logo">Red</div>
                 <nav>
-                    <ul className={classes.ul}>
-                        <li className={classes.margin1}>
+                    <ul className="ul">
+                        <li className="margin1">
                             <PersonAddOutlined 
                                 fontSize="large" 
-                                className={classes.iconsHeader}
+                                className="iconsHeader"
                                 onClick={() => setToggleFriends(true)}/>
                         </li>
-                        <li className={classes.margin1}>
+                        <li className="margin1">
                             <PeopleOutlined 
                                 fontSize="large" 
-                                className={classes.iconsHeader}
+                                className="iconsHeader"
                                 onClick={() => setToggleFriends(false)}/>
                         </li>
-                        <li className={classes.margin1}>
+                        <li className="margin1">
                             {matches?
                             <Button 
                                 variant="contained"
                                 size="small" 
-                                className={classes.gray} 
+                                className="gray" 
                                 type="submit"
                                 onClick={handleLogOut}>
-                                <span className={classes.spanButton}>Cerrar sesión</span>
+                                <span className="spanButton">Cerrar sesión</span>
                             </Button>
                             :
                             <ExitToApp
                                 onClick={handleLogOut}
                                 fontSize="large"
-                                className={classes.lightgray}
+                                className="lightgray"
                             />
                             }
                         </li>

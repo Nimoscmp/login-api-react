@@ -4,7 +4,7 @@ import Header from './home/Header';
 import Main from './home/Main';
 import SeeFriends from './home/SeeFriends';
 
-export default function Home({setCheckLogin, setCheckLogOut, checklogin, checkLogOut, loggedIn, localUser}) {
+export default function Home({setCheckLogin, setCheckLogOut, checklogin, checkLogOut, localUser}) {
 
     //Declare states
     // const [showPreload, setShowPreload] = useState(true);
@@ -13,7 +13,6 @@ export default function Home({setCheckLogin, setCheckLogOut, checklogin, checkLo
     const [imgDataUsers, setImgDataUsers] = useState([]);
     const [completeUsers, setCompleteUsers] = useState([]);
     const [toggleFriends, setToggleFriends] = useState(true);
-    const [addedFriend, setAddedFriend] = useState([]);
 
     //Initialize friends
     let friendsInit = JSON.parse(localStorage.getItem('friendsList'));

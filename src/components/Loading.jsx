@@ -15,9 +15,9 @@ export default function Loading() {
 
     return (
         <>
-            <main className={classes.mainLoad}>
-                <div className={classes.divLoad}>
-                    <span className={classes.h3}>Cargando...</span>
+            <main className="mainLoad">
+                <div className="divLoad">
+                    <span className="h3">Cargando...</span>
                     <CircularProgress color="secondary" size={32}/>
                 </div>
             </main>

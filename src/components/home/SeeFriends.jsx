@@ -24,40 +24,39 @@ export default function SeeFriends({friendList, setFriendList}) {
     return (
         <>
             <section 
-                className={classes.mainLoad2}
+                className="mainLoad2"
                 style={{
                     display: showPreload2 ? 'flex' : 'none'
                 }}>
-                <div className={classes.divLoad}>
-                    <span className={classes.h3}>Cargando...</span>
+                <div className="divLoad">
+                    <span className="h3">Cargando...</span>
                     <CircularProgress color="secondary" size={32}/>
                 </div>
             </section>
             {friendList.length === 0 ?
-            <section className={classes.main}>
+            <section className="main">
                 <p style={{fontSize: '1.5rem'}} >¡Aún no has agregado amigos! Amplia tu red de contactos</p>
             </section>
             :
-            <main className={classes.main} onLoad={handleLoad2}>
+            <main className="main" onLoad={handleLoad2}>
                 {friendList.map(item => (
-                    <div key={item.id} className={classes.cardMini}>
-                        <div className={classes.justBetween}>
-                            <div className={classes.justAround}>
-                                <img src={item.imgUrl} alt="" className={classes.imgUrl}/>
-                                <span className={classes.margin1}><strong className={classes.white}>{item.name}</strong></span>
+                    <div key={item.id} className="cardMini">
+                        <div className="justBetween">
+                            <div className="justAround">
+                                <img src={item.imgUrl} alt="" className="imgUrl"/>
+                                <span className="margin1"><strong className="white">{item.name}</strong></span>
                             </div>
-                            <HighlightOff
-                                color="secondary" 
+                            <HighlightOff 
                                 fontSize="large" 
-                                className={classes.iconAdd}
+                                className="iconAdd"
                                 onClick={() => deleteFriend(item.id)}/>
                         </div>
                         <div>
-                            <p className={classes.span1}><small className={classes.margin1}><strong>{item.city}</strong></small><LocationCity color="secondary"/></p>
-                            <p className={classes.span2}>
+                            <p className="span1"><small className="margin1"><strong>{item.city}</strong></small><LocationCity color="secondary"/></p>
+                            <p className="span2">
                                 {item.phone}
                                 <PhoneEnabledOutlined style={{marginLeft: '8px'}}/></p>
-                            <p className={classes.span3}>{item.phrase}</p>
+                            <p className="span3">{item.phrase}</p>
                         </div>
                     </div>
                 ))}

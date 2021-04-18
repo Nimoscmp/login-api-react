@@ -70,44 +70,44 @@ export default function Main({dataUsers, imageUsers, imgDataUsers, setImgDataUse
     return (
         <> 
             <section 
-                className={classes.mainLoad2}
+                className="mainLoad2"
                 style={{
                     display: showPreload ? 'flex' : 'none'
                 }}>
-                <div className={classes.divLoad}>
-                    <span className={classes.h3}>Cargando...</span>
+                <div className="divLoad">
+                    <span className="h3">Cargando...</span>
                     <CircularProgress color="secondary" size={32}/>
                 </div>
             </section>
 
-            <main className={classes.main} onLoad={handleLoad}>
+            <main className="main" onLoad={handleLoad}>
                 {completeUsers.map(item => (
-                    <div key={item.id} className={matches ? classes.card : classes.cardMini}>
-                        <div className={classes.justBetween}>
-                            <div className={classes.justAround}>
-                                <img src={item.imgUrl} alt="" className={classes.imgUrl}/>
-                                <span className={classes.margin1}><strong className={classes.white}>{item.name}</strong></span>
+                    <div key={item.id} className={matches ? "card" : "cardMini"}>
+                        <div className="justBetween">
+                            <div className="justAround">
+                                <img src={item.imgUrl} alt="" className="imgUrl"/>
+                                <span className="margin1"><strong className="white">{item.name}</strong></span>
                             </div>
                             {
                             checkIfFriend(item.id)
                             ?
                             <CheckCircleOutline
                                 fontSize="large"
-                                className={classes.iconCheck}
+                                className="iconCheck"
                             />
                             :
                             <AddCircle 
                                 fontSize="large" 
-                                className={classes.iconAdd}
+                                className="iconAdd"
                                 onClick={() => AddFriend(item.id)}/>
                             }
                         </div>
                         <div>
-                            <p className={classes.span1}><small className={classes.margin1}><strong>{item.city}</strong></small><LocationCity color="secondary"/></p>
-                            <p className={classes.span2}>
+                            <p className="span1"><small className="margin1"><strong>{item.city}</strong></small><LocationCity color="secondary"/></p>
+                            <p className="span2">
                                 {item.phone}
                                 <PhoneEnabledOutlined style={{marginLeft: '8px'}}/></p>
-                            <p className={classes.span3}>{item.phrase}</p>
+                            <p className="span3">{item.phrase}</p>
                         </div>
                     </div>
                 ))}
