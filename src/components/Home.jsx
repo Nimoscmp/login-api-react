@@ -13,6 +13,7 @@ export default function Home({setCheckLogin, setCheckLogOut, checklogin, checkLo
     const [imgDataUsers, setImgDataUsers] = useState([]);
     const [completeUsers, setCompleteUsers] = useState([]);
     const [toggleFriends, setToggleFriends] = useState(true);
+    const [addedFriend, setAddedFriend] = useState([]);
 
     //Initialize friends
     let friendsInit = JSON.parse(localStorage.getItem('friendsList'));

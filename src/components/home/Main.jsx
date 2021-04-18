@@ -22,6 +22,7 @@ export default function Main({dataUsers, imageUsers, imgDataUsers, setImgDataUse
         setImgDataUsers(
             imageUsers.filter(item => parseInt(item.id) < 1005 && parseInt(item.id) !== 1003)
         )
+        // eslint-disable-next-line
     }, [imageUsers])
 
     useEffect(() => {
@@ -42,7 +43,7 @@ export default function Main({dataUsers, imageUsers, imgDataUsers, setImgDataUse
         }
 
         dataFunc();
-        
+        // eslint-disable-next-line
     }, [imgDataUsers])
 
     const AddFriend = identifier => {
@@ -50,22 +51,20 @@ export default function Main({dataUsers, imageUsers, imgDataUsers, setImgDataUse
         setFriendList([...friendList, newFriend[0]])
     }
 
-    const [fay, setfay] = useState([]);
-
     const checkIfFriend = identifier => {
-        const friendAlready = friendList.filter(friend => friend.id === identifier);
+        if(friendList.length > 0){
+            const friendAlready = friendList.filter(friend => friend.id === identifier);
 
-        // setfay(friendAlready);
+            if(friendAlready.length === 0){
+                return false;
+            }
+            else {
+                return true;
+            }
 
-        if (friendAlready.length === 0) {
-            
-            return false;
-        } else if(friendAlready[0].id === identifier){
-            setfay(friendAlready);
-            return true;
         } else {
             return false;
-        }
+        }        
     }
 
     return (
@@ -90,7 +89,7 @@ export default function Main({dataUsers, imageUsers, imgDataUsers, setImgDataUse
                                 <span className={classes.margin1}><strong className={classes.white}>{item.name}</strong></span>
                             </div>
                             {
-                            checkIfFriend()
+                            checkIfFriend(item.id)
                             ?
                             <CheckCircleOutline
                                 fontSize="large"

@@ -13,13 +13,17 @@ export default function SeeFriends({friendList, setFriendList}) {
         setShowPreload2(false);
     }
 
+    setTimeout(() => {
+        setShowPreload2(false);
+    }, 500);
+
     const deleteFriend = (identifier) => {
         setFriendList(friendList.filter(item => item.id !== identifier))
     }
 
     return (
         <>
-            {/* <section 
+            <section 
                 className={classes.mainLoad2}
                 style={{
                     display: showPreload2 ? 'flex' : 'none'
@@ -28,13 +32,13 @@ export default function SeeFriends({friendList, setFriendList}) {
                     <span className={classes.h3}>Cargando...</span>
                     <CircularProgress color="secondary" size={32}/>
                 </div>
-            </section> */}
+            </section>
             {friendList.length === 0 ?
-            <section className={classes.main} onLoad={handleLoad2}>
+            <section className={classes.main}>
                 <p style={{fontSize: '1.5rem'}} >¡Aún no has agregado amigos! Amplia tu red de contactos</p>
             </section>
             :
-            <main className={classes.main}>
+            <main className={classes.main} onLoad={handleLoad2}>
                 {friendList.map(item => (
                     <div key={item.id} className={classes.cardMini}>
                         <div className={classes.justBetween}>
