@@ -35,7 +35,7 @@ export default function SeeFriends({friendList, setFriendList}) {
             </section>
             {friendList.length === 0 ?
             <section className="main">
-                <p style={{fontSize: '1.5rem'}} >¡Aún no has agregado amigos! Amplia tu red de contactos</p>
+                <p style={{fontSize: '1.5rem', margin: '2rem 1rem'}} >¡Aún no has agregado amigos! Amplia tu red de contactos</p>
             </section>
             :
             <main className="main" onLoad={handleLoad2}>

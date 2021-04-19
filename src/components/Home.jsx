@@ -65,6 +65,7 @@ export default function Home({setCheckLogin, setCheckLogOut, checklogin, checkLo
     const handleLogOut = () => {
         setCheckLogOut(true);
         localStorage.removeItem('usuario');
+        setToggleFriends(false);
     }
 
     // >>> Get APIS <<<
