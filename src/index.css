@@ -252,13 +252,14 @@ code {
   cursor: pointer;
 }
 .lightgray:hover{
-  color: gray;
+  color: gray !important;
 }
 .iconsHeader {
   transition: all 0.3s ease !important;
   color: black;
   cursor: pointer;
+  transform-origin: 50% 50%;
 }
 .iconsHeader:hover{
-  color: #f50057;
+  color: #f50057 !important;
 }

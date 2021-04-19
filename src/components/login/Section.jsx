@@ -11,7 +11,7 @@ export default function Section() {
             <section className="sectionContainer">
                 <div className="formContainer">
                     <h2 className="fw400">¿Listo para <strong className="iconsLight">conectarte</strong> con tus amigos?</h2>
-                    <p>Esta plataforma te permite unirte con cientos de personas alrededor del mundo</p>
+                    <p><strong style={{color: '#f50057'}} >Red</strong> te permite unirte con cientos de personas alrededor del mundo</p>
                 </div>
             </section>
         </Grid>

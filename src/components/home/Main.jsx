@@ -3,7 +3,7 @@ import { AddCircle, CheckCircleOutline, LocationCity, PhoneEnabledOutlined } fro
 import React, { useEffect, useState } from 'react'
 import useStyles from '../../styles/Styles';
 
-export default function Main({dataUsers, imageUsers, imgDataUsers, setImgDataUsers, completeUsers, setCompleteUsers, friendList, setFriendList}) {
+export default function Main({dataUsers, imageUsers, imgDataUsers, setImgDataUsers, completeUsers, setCompleteUsers, friendList, setFriendList, setToggleFriends}) {
 
     const classes = useStyles();
     const matches = useMediaQuery('(min-width:805px)');
@@ -15,8 +15,12 @@ export default function Main({dataUsers, imageUsers, imgDataUsers, setImgDataUse
     }
 
     setTimeout(() => {
+        setToggleFriends(true);
+    }, 200);
+
+    setTimeout(() => {
         setShowPreload(false);
-    }, 800);
+    }, 700);
 
     useEffect(() => {
         setImgDataUsers(

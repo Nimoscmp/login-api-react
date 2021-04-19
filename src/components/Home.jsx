@@ -101,6 +101,7 @@ export default function Home({setCheckLogin, setCheckLogOut, checklogin, checkLo
         <>
             <Header 
                 handleLogOut={handleLogOut}
+                toggleFriends={toggleFriends}
                 setToggleFriends={setToggleFriends}
             />
             {toggleFriends?
@@ -113,6 +114,7 @@ export default function Home({setCheckLogin, setCheckLogOut, checklogin, checkLo
                 setCompleteUsers={setCompleteUsers}
                 friendList={friendList}
                 setFriendList={setFriendList}
+                setToggleFriends={setToggleFriends}
             />
             :
             <SeeFriends

@@ -3,7 +3,7 @@ import { ExitToApp, PeopleOutlined, PersonAddOutlined } from '@material-ui/icons
 import React from 'react'
 import useStyles from '../../styles/Styles';
 
-export default function Header({handleLogOut, setToggleFriends}) {
+export default function Header({handleLogOut, toggleFriends, setToggleFriends}) {
 
     const classes = useStyles();
 
@@ -19,12 +19,20 @@ export default function Header({handleLogOut, setToggleFriends}) {
                             <PersonAddOutlined 
                                 fontSize="large" 
                                 className="iconsHeader"
+                                style={{
+                                    color: toggleFriends ? '#f50057' : 'black',
+                                    fontSize: toggleFriends ? '3rem' : '2.5rem'
+                                }}
                                 onClick={() => setToggleFriends(true)}/>
                         </li>
                         <li className="margin1">
                             <PeopleOutlined 
                                 fontSize="large" 
                                 className="iconsHeader"
+                                style={{
+                                    color: toggleFriends ? 'black' : '#f50057',
+                                    fontSize: toggleFriends ? '2.5rem' : '3rem'
+                                }}
                                 onClick={() => setToggleFriends(false)}/>
                         </li>
                         <li className="margin1">
